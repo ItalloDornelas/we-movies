@@ -10,27 +10,29 @@ export default createGlobalStyle`
 
     :root{
             --default-color: #2F2E41;
-            --white: #FFFFFF;
-            --blue: #009EDD
+            --color-text: #FFFFFF;
+            --color-infos: #999999;
+            --color-buttons: #009EDD
         }
     body{
         background: var(--default-color);
-        color: var(--white)
+        color: var(--color-text)
     }   
     body,input, button{
-        font-family: "Squada One", serif;
+        font-family: "Open Sans", serif;
         font-size: 1rem;
     } 
     h1,h2,h3,h4,h5,h6{
-        font-family: "Roboto Mono", monospace;
+        font-family: "Open Sans", monospace;
         font-weight: 700;
     }
     button{
         cursor: pointer;
         background: var(--blue);
-        color: var(--white)
+        color: var(--color-text)
     }
     a{
         text-decoration: none;
+        color: var(--color-text)
     }
 `;
