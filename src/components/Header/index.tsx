@@ -8,7 +8,7 @@ import {
   TitleLink,
 } from './styles';
 
-import ShoppingBagImg from '../../assets/shopping-bag.png';
+import ShoppingBagImg from '../../assets/image/shopping-bag.png';
 
 export default function Header() {
   const { cart } = useCarts();

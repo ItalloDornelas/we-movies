@@ -1,0 +1,9 @@
+import axios from 'axios';
+
+export const getProducts = async () => {
+  const response = await axios({
+    baseURL: `http://localhost:3000/products`,
+  });
+
+  return response;
+};
