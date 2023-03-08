@@ -1,4 +1,4 @@
-import { useCarts } from '../../providers/cart';
+import { useProducts } from '../../providers/products';
 import {
   CartLink,
   ContainerHeader,
@@ -11,7 +11,7 @@ import {
 import ShoppingBagImg from '../../assets/image/shopping-bag.png';
 
 export default function Header() {
-  const { cart } = useCarts();
+  const { products } = useProducts();
 
   return (
     <ContainerHeader>
@@ -20,7 +20,7 @@ export default function Header() {
       <NavLink to="/cart">
         <CartLink>
           <TitleLink>Meu Carrinho </TitleLink>
-          <Text>{cart.length} itens </Text>
+          <Text>{products.length} itens </Text>
         </CartLink>
         <img src={ShoppingBagImg} alt="sacola de compras" />
       </NavLink>

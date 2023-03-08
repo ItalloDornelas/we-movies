@@ -1,14 +1,13 @@
 import Header from './components/Header';
-import { getProducts } from './services/api';
+import Router from './routes';
+
 import GlobalStyle from './styles/global';
 
 function App() {
-  getProducts();
-
   return (
     <>
       <Header />
-
+      <Router />
       <GlobalStyle />
     </>
   );

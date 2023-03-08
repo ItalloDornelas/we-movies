@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-import { CartProvider } from './cart';
+import { ProductProvider } from './products';
 interface ProvidersProps {
   children: ReactNode;
 }
 const Providers = ({ children }: ProvidersProps) => {
-  return <CartProvider>{children}</CartProvider>;
+  return <ProductProvider>{children}</ProductProvider>;
 };
 
 export default Providers;

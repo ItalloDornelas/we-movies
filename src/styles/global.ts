@@ -10,29 +10,31 @@ export default createGlobalStyle`
 
     :root{
             --default-color: #2F2E41;
-            --color-text: #FFFFFF;
-            --color-infos: #999999;
-            --color-buttons: #009EDD
+            --white: #FFFFFF;
+            --black: #333333;
+            --gray: #999999;
+            --blue: #009EDD;
+            --green: #039B00;
         }
     body{
         background: var(--default-color);
-        color: var(--color-text)
+        color: var(--white)
     }   
     body,input, button{
         font-family: "Open Sans", serif;
         font-size: 1rem;
     } 
     h1,h2,h3,h4,h5,h6{
-        font-family: "Open Sans", monospace;
+        font-family: "Open Sans";
         font-weight: 700;
     }
     button{
         cursor: pointer;
         background: var(--blue);
-        color: var(--color-text)
+        color: var(--white)
     }
     a{
         text-decoration: none;
-        color: var(--color-text)
+        color: var(--white)
     }
 `;

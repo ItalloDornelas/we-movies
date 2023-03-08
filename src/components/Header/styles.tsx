@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContainerHeader = styled.div`
   max-width: 960px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 24px;
   overflow: hidden;
   position: relative;
   padding: 18px 10px;
@@ -12,6 +12,7 @@ export const ContainerHeader = styled.div`
   justify-content: space-between;
   text-align: center;
   align-items: center;
+  height: 74px;
 `;
 
 export const Title = styled.h2`
