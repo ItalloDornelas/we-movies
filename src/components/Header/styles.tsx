@@ -18,6 +18,7 @@ export const ContainerHeader = styled.div`
 export const Title = styled.h2`
   font-size: 20px;
   line-height: 27px;
+  cursor: pointer;
 `;
 
 export const NavLink = styled(Link)`
@@ -44,5 +45,5 @@ export const TitleLink = styled.h3`
 export const Text = styled(TitleLink)`
   font-size: 12px;
   line-height: 16px;
-  color: var(--color-infos);
+  color: var(--gray);
 `;

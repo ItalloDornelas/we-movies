@@ -8,14 +8,16 @@ import {
   TitleLink,
 } from './styles';
 
+import { useNavigate } from 'react-router-dom';
 import ShoppingBagImg from '../../assets/image/shopping-bag.png';
 
 export default function Header() {
   const { products } = useProducts();
+  const navigate = useNavigate();
 
   return (
     <ContainerHeader>
-      <Title>WeMovies</Title>
+      <Title onClick={() => navigate('/')}>WeMovies</Title>
 
       <NavLink to="/cart">
         <CartLink>

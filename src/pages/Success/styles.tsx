@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContainerNull = styled.div`
+export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ export const ContainerNull = styled.div`
   background-color: var(--white);
 `;
 
-export const TitleNull = styled.h2`
+export const Title = styled.h2`
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;
@@ -26,7 +26,7 @@ export const TitleNull = styled.h2`
   color: var(--default-color);
 `;
 
-export const ButtonNull = styled.button`
+export const Button = styled.button`
   width: 180px;
   height: 40px;
   font-weight: 700;
