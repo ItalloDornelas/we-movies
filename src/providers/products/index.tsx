@@ -12,7 +12,9 @@ import { ProductsType } from '../../services/api.interface';
 interface IProductsProviderData {
   products: ProductsType[];
   addProducts: Dispatch<SetStateAction<ProductsType[]>>;
-  deleteProducts: (carts: ProductsType) => void;
+  deleteProducts: (products: ProductsType) => void;
+  replaceSameProducts: () => void;
+  incrementSameProducts: number;
 }
 
 interface IProductsProviderProps {
@@ -28,19 +30,34 @@ export const ProductProvider = ({ children }: IProductsProviderProps) => {
     [] as ProductsType[]
   );
 
+  const [incrementSameProducts, setIncrementSameProducts] = useState(1);
+
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(products));
   }, [products]);
 
   const deleteProducts = (productToBeDeleted: ProductsType) => {
     const newList = products.filter(
-      (cart) => cart.id !== productToBeDeleted.id
+      (product) => product.id !== productToBeDeleted.id
     );
     addProducts(newList);
   };
 
+  const replaceSameProducts = () => {
+    setIncrementSameProducts(incrementSameProducts + 1);
+    return incrementSameProducts;
+  };
+
   return (
-    <ProductContext.Provider value={{ products, addProducts, deleteProducts }}>
+    <ProductContext.Provider
+      value={{
+        products,
+        addProducts,
+        deleteProducts,
+        replaceSameProducts,
+        incrementSameProducts,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

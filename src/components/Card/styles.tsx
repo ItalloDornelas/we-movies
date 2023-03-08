@@ -21,10 +21,14 @@ export const ProductList = styled.li`
   flex-direction: column;
   align-items: center;
   padding: 10px 11px;
-  gap: 12px;
+  gap: 10px;
   border-radius: 4px;
   width: 309.33px;
   background-color: var(--white);
+  @media (max-width: 880px) {
+    width: 100%;
+    margin: 16px;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -50,7 +54,6 @@ export const ProductPrice = styled.span`
 
 export const ProductButton = styled.button`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 8px;
@@ -64,4 +67,55 @@ export const ProductButton = styled.button`
   line-height: 16px;
   text-align: center;
   text-transform: uppercase;
+`;
+export const ContentButton = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+`;
+export const ProductButtonSuccess = styled(ProductButton)`
+  background-color: var(--green);
+`;
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+`;
+export const Loading = styled.span`
+  width: 55.41px;
+  height: 55.41px;
+  border-radius: 50%;
+  display: inline-block;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    rgba(128, 128, 128, 0.0001) -46.17deg,
+    #ffffff 313.55deg,
+    rgba(128, 128, 128, 0.0001) 313.83deg,
+    #ffffff 673.55deg
+  );
+  ::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--default-color);
+  }
+
+  animation: rotation 1s linear infinite;
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;

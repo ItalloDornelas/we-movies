@@ -28,9 +28,11 @@ import {
 } from './styles';
 
 function CheckoutCard() {
-  const { products, deleteProducts } = useProducts();
+  const { products, deleteProducts, incrementSameProducts } = useProducts();
 
-  const [inputValue, setInputValue] = useState(1);
+  const [inputValue, setInputValue] = useState(
+    incrementSameProducts ? incrementSameProducts : 1
+  );
 
   const navigate = useNavigate();
 
@@ -70,8 +72,9 @@ function CheckoutCard() {
                       />
                       <InputProduct
                         type="number"
-                        value={inputValue}
-                        onChange={() => {}}
+                        onChange={(event) => {
+                          console.log(event.target);
+                        }}
                       />
                       <ImgQtdProduct
                         src={PlusImg}
@@ -112,7 +115,6 @@ function CheckoutCard() {
         <ContainerTotal>
           <ButtonProduct
             onClick={() => {
-              console.log('HERE');
               navigate('/success');
             }}
           >

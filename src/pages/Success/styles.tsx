@@ -11,7 +11,9 @@ export const Container = styled.div`
   border-radius: 4px;
 
   max-width: 960px;
-
+  @media (max-width: 880px) {
+    margin: 16px;
+  }
   background-color: var(--white);
 `;
 

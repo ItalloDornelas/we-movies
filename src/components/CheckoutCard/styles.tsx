@@ -10,6 +10,11 @@ export const Container = styled.div`
   max-width: 950px;
   background: var(--white);
   border-radius: 4px;
+  overflow-y: hidden;
+  @media (max-width: 880px) {
+    height: 80vh;
+    margin: 16px;
+  }
 `;
 
 export const Card = styled.div`
@@ -18,6 +23,12 @@ export const Card = styled.div`
   width: 100%;
   justify-content: space-between;
   gap: 52px;
+  @media (max-width: 970px) {
+    gap: 16px;
+  }
+  @media (max-width: 554px) {
+    flex-direction: column;
+  }
 `;
 
 export const TitleProduct = styled.h2`
@@ -49,6 +60,10 @@ export const CardDesciption = styled.div`
   display: flex;
   align-items: center;
   gap: 52px;
+  @media (max-width: 880px) {
+    gap: 16px;
+    align-items: flex-start;
+  }
 `;
 
 export const DesciptionProduct = styled.div`
@@ -60,6 +75,12 @@ export const DesciptionProduct = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 253px;
+  @media (max-width: 880px) {
+    flex-direction: row;
+  }
+  @media (max-width: 700px) {
+    width: auto;
+  }
 `;
 export const ImageProduct = styled.img`
   width: 89px;
@@ -72,6 +93,9 @@ export const QtdProduct = styled.div`
   gap: 11px;
   align-items: center;
   height: 108px;
+  @media (max-width: 554px) {
+    height: auto;
+  }
 `;
 export const ImgQtdProduct = styled.img`
   width: 18px;
@@ -90,6 +114,12 @@ export const SubtotalProduct = styled.div`
   font-size: 16px;
   line-height: 22px;
   width: 213.69px;
+  @media (max-width: 880px) {
+    width: auto;
+  }
+  @media (max-width: 554px) {
+    height: auto;
+  }
 `;
 
 export const InputProduct = styled.input`
@@ -115,6 +145,9 @@ export const InputProduct = styled.input`
 `;
 export const DivProductContainer = styled.div`
   margin-bottom: 20px;
+  @media (max-width: 554px) {
+    margin-bottom: 0px;
+  }
 `;
 
 export const DivProduct = styled.div`
@@ -148,6 +181,9 @@ export const ContainerTotal = styled.div`
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 880px) {
+    postion: fixed;
+  }
 `;
 
 export const TotalProduct = styled.div`

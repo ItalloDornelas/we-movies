@@ -7,7 +7,6 @@ export const ContainerHeader = styled.div`
   overflow: hidden;
   position: relative;
   padding: 18px 10px;
-  gap: 474px;
   display: flex;
   justify-content: space-between;
   text-align: center;

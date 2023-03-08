@@ -13,6 +13,9 @@ export const ContainerNull = styled.div`
   max-width: 960px;
 
   background-color: var(--white);
+  @media (max-width: 880px) {
+    margin: 16px;
+  }
 `;
 
 export const TitleNull = styled.h2`
