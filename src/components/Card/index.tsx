@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import CartImg from '../../assets/image/cart.png';
 import { useProducts } from '../../providers/products';
 import { ProductsType } from '../../services/api.interface';
@@ -23,23 +22,12 @@ interface ICardProps {
 }
 
 function Card({ loading, productsApi }: ICardProps) {
-  const { addProducts, products, replaceSameProducts } = useProducts();
-
-  const [productId, setProductId] = useState(0);
+  const { addProducts, products } = useProducts();
 
   const handleClick = (productApi: ProductsType) => {
     if (!products.includes(productApi)) {
       addProducts([...products, productApi]);
-    } else {
-      replaceSameProducts();
     }
-  };
-
-  const handleClickedTimes = (productApi: ProductsType) => {
-    if (productApi.id === productId) {
-      return 1;
-    }
-    return 0;
   };
 
   return (
@@ -59,28 +47,30 @@ function Card({ loading, productsApi }: ICardProps) {
                 <ProductTitle>{productApi.title}</ProductTitle>
 
                 <ProductPrice>{formatValue(productApi.price)}</ProductPrice>
-                {handleClickedTimes(productApi) > 0 ? (
+                {productApi.clicked > 0 ? (
                   <ProductButtonSuccess
                     onClick={() => {
+                      productApi.clicked += 1;
                       handleClick(productApi);
                     }}
                   >
                     <ContentButton>
                       <img src={CartImg} alt="carrinho" />
-                      {1}
+
+                      {productApi.clicked}
                     </ContentButton>
                     Item adicionado
                   </ProductButtonSuccess>
                 ) : (
                   <ProductButton
                     onClick={() => {
-                      setProductId(productApi.id);
+                      productApi.clicked += 1;
                       handleClick(productApi);
                     }}
                   >
                     <ContentButton>
                       <img src={CartImg} alt="carrinho" />
-                      {handleClickedTimes(productApi)}
+                      {productApi.clicked}
                     </ContentButton>
                     Adicionar ao Carrinho
                   </ProductButton>

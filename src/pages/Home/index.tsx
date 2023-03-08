@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Card from '../../components/Card';
 import api from '../../services/api';
 import { ProductsType } from '../../services/api.interface';
-import { formatValue } from '../../utils';
 
 function Home() {
   const [products, setProducts] = useState<ProductsType[]>(
@@ -15,7 +14,7 @@ function Home() {
 
     const data = response.data.map((product: ProductsType) => ({
       ...product,
-      priceFormatted: formatValue(product.price),
+      clicked: 0,
     }));
 
     setLoading(false);

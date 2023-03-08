@@ -3,4 +3,6 @@ export interface ProductsType {
   title: string;
   price: number;
   image: string;
+  clicked: number;
+  qtd: number;
 }

@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LessImg from '../../assets/image/less.png';
 import PlusImg from '../../assets/image/plus.png';
 import TrashImg from '../../assets/image/trash.png';
 import { useProducts } from '../../providers/products';
+import { ProductsType } from '../../services/api.interface';
 import { formatValue } from '../../utils/index';
 import {
   ButtonProduct,
@@ -18,27 +18,36 @@ import {
   DividerProduct,
   DivProduct,
   DivProductContainer,
+  DivTotalContainer,
   ImageProduct,
   ImgQtdProduct,
   InputProduct,
   QtdProduct,
   SubtotalProduct,
+  SubtotalTitle,
   TitleProduct,
   TotalProduct,
+  TotalTitle,
 } from './styles';
 
 function CheckoutCard() {
-  const { products, deleteProducts, incrementSameProducts } = useProducts();
-
-  const [inputValue, setInputValue] = useState(
-    incrementSameProducts ? incrementSameProducts : 1
-  );
+  const { products, deleteProducts, addProducToCart } = useProducts();
 
   const navigate = useNavigate();
 
-  const subtotal = products
-    .reduce((product, acc) => acc.price * inputValue + product, 0)
-    .toFixed(2);
+  const total = parseFloat(
+    products
+      .reduce((product, acc) => acc.price * acc.clicked + product, 0)
+      .toFixed(2)
+  );
+
+  const handleInputValue = (product: ProductsType) => {
+    (
+      document.getElementById(`input-id-${product.id}`) as HTMLInputElement
+    ).value = product.clicked.toString();
+
+    addProducToCart(product);
+  };
 
   return (
     <>
@@ -59,38 +68,41 @@ function CheckoutCard() {
               <CardProduct>
                 <TitleProduct>Qtd</TitleProduct>
                 <CardDesciption>
-                  <form>
-                    <QtdProduct>
-                      <ImgQtdProduct
-                        src={LessImg}
-                        alt="imagem do sinal de menos"
-                        onClick={() => {
-                          if (inputValue > 1) {
-                            setInputValue(inputValue - 1);
-                          }
-                        }}
-                      />
-                      <InputProduct
-                        type="number"
-                        onChange={(event) => {
-                          console.log(event.target);
-                        }}
-                      />
-                      <ImgQtdProduct
-                        src={PlusImg}
-                        alt="imagem do sinal de mais"
-                        onClick={() => setInputValue(inputValue + 1)}
-                      />
-                    </QtdProduct>
-                  </form>
+                  <QtdProduct>
+                    <ImgQtdProduct
+                      src={LessImg}
+                      alt="imagem do sinal de menos"
+                      onClick={() => {
+                        if (product.clicked > 1) {
+                          product.clicked -= 1;
+                        }
+                        handleInputValue(product);
+                      }}
+                    />
+                    <InputProduct
+                      id={`input-id-${product.id}`}
+                      type="number"
+                      name="inputValue"
+                      value={product.clicked}
+                      disabled
+                    />
+                    <ImgQtdProduct
+                      src={PlusImg}
+                      alt="imagem do sinal de mais"
+                      onClick={() => {
+                        product.clicked += 1;
+                        handleInputValue(product);
+                      }}
+                    />
+                  </QtdProduct>
                 </CardDesciption>
               </CardProduct>
 
               <CardProduct>
-                <TitleProduct>SubTotal</TitleProduct>
+                <SubtotalTitle>SubTotal</SubtotalTitle>
                 <CardDesciption>
                   <SubtotalProduct>
-                    {formatValue(product.price * inputValue)}
+                    {formatValue(product.price * product.clicked)}
                   </SubtotalProduct>
                 </CardDesciption>
               </CardProduct>
@@ -111,22 +123,22 @@ function CheckoutCard() {
             </Card>
           ))}
         </CardContainer>
-        <DividerProduct />
-        <ContainerTotal>
-          <ButtonProduct
-            onClick={() => {
-              navigate('/success');
-            }}
-          >
-            Finalizar pedido
-          </ButtonProduct>
-          <TotalProduct>
-            <TitleProduct>Total</TitleProduct>
-            <DescriptionTotal>
-              {formatValue(parseInt(subtotal))}
-            </DescriptionTotal>
-          </TotalProduct>
-        </ContainerTotal>
+        <DivTotalContainer>
+          <DividerProduct />
+          <ContainerTotal>
+            <ButtonProduct
+              onClick={() => {
+                navigate('/success');
+              }}
+            >
+              Finalizar pedido
+            </ButtonProduct>
+            <TotalProduct>
+              <TotalTitle>Total</TotalTitle>
+              <DescriptionTotal>{formatValue(total)}</DescriptionTotal>
+            </TotalProduct>
+          </ContainerTotal>
+        </DivTotalContainer>
       </Container>
     </>
   );

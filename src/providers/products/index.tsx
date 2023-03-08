@@ -13,8 +13,8 @@ interface IProductsProviderData {
   products: ProductsType[];
   addProducts: Dispatch<SetStateAction<ProductsType[]>>;
   deleteProducts: (products: ProductsType) => void;
-  replaceSameProducts: () => void;
-  incrementSameProducts: number;
+  addProducToCart: (products: ProductsType) => void;
+  clearCart: () => void;
 }
 
 interface IProductsProviderProps {
@@ -30,8 +30,6 @@ export const ProductProvider = ({ children }: IProductsProviderProps) => {
     [] as ProductsType[]
   );
 
-  const [incrementSameProducts, setIncrementSameProducts] = useState(1);
-
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(products));
   }, [products]);
@@ -43,10 +41,32 @@ export const ProductProvider = ({ children }: IProductsProviderProps) => {
     addProducts(newList);
   };
 
-  const replaceSameProducts = () => {
-    setIncrementSameProducts(incrementSameProducts + 1);
-    return incrementSameProducts;
-  };
+  function clearCart() {
+    addProducts([]);
+  }
+
+  function addProducToCart(productToReplaced: ProductsType) {
+    const copyProductsCart = [...products];
+
+    const item = copyProductsCart.find(
+      (product) => product.id === productToReplaced.id
+    );
+
+    if (!item) {
+      copyProductsCart.push({
+        id: productToReplaced.id,
+        qtd: 1,
+        title: productToReplaced.title,
+        price: productToReplaced.price,
+        image: productToReplaced.image,
+        clicked: productToReplaced.clicked,
+      });
+    } else {
+      item.qtd = item.qtd + 1;
+    }
+
+    addProducts(copyProductsCart);
+  }
 
   return (
     <ProductContext.Provider
@@ -54,8 +74,8 @@ export const ProductProvider = ({ children }: IProductsProviderProps) => {
         products,
         addProducts,
         deleteProducts,
-        replaceSameProducts,
-        incrementSameProducts,
+        addProducToCart,
+        clearCart,
       }}
     >
       {children}
